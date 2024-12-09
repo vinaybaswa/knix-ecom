@@ -29,7 +29,6 @@ const categories = [
   },
 ];
 
-
 function App() {
   return (
     <>
