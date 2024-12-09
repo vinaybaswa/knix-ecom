@@ -11,8 +11,12 @@ export const Navigation = () => {
           <img src={KnixLogo} />
         </Link>
         <div className="w-[50%] h-full flex items-center justify-end text-lg">
-          <Link to="/shop" className="py-2 px-4">Shop</Link>
-          <Link to="/shop" className="py-2 px-4">Login</Link>
+          <Link to="/shop" className="py-2 px-4">
+            Shop
+          </Link>
+          <Link to="/shop" className="py-2 px-4">
+            Login
+          </Link>
         </div>
       </div>
       <Outlet />
