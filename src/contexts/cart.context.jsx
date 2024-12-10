@@ -68,7 +68,7 @@ export const CartProvider = ({ children }) => {
       (total, cartItem) => total + cartItem.quantity * cartItem.price,
       0
     );
-    setCartTotal(newCartTotal);
+    setCartTotal(newCartTotal.toFixed(2));
   }, [cartItems]);
 
   const addItemToCart = (productToAdd) => {
