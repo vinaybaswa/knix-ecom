@@ -2,7 +2,7 @@ const CategoryItem = ({ category }) => {
   const { imageUrl, title } = category;
   return (
     <div
-      className="min-w-[40%] h-80 flex-auto flex items-center 
+      className="min-w-[40%] h-[600px] flex-auto flex items-center 
 justify-center border border-black mx-3 mt-0 mb-3 
 overflow-hidden cursor-pointer first:mr-1 
 last:ml-1"
