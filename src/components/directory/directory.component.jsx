@@ -1,10 +1,16 @@
-import CategoryItem from "../category-item/category-item.component";
+import { useContext } from "react";
 
-const Directory = ({ categories }) => {
+import { ProductsContext } from "../../contexts/product.context";
+
+import DirectoryItem from "../directory-item/directory-item.component";
+
+const Directory = () => {
+  const { directory } = useContext(ProductsContext);
+
   return (
     <div className="w-full flex flex-wrap justify-between">
-      {categories.map((category) => (
-        <CategoryItem key={category.id} category={category} />
+      {directory.map((product) => (
+        <DirectoryItem key={product.id} product={product} />
       ))}
     </div>
   );

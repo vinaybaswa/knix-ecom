@@ -6,9 +6,11 @@ import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
 import { CartContext } from "../../contexts/cart.context";
+import { ProductsContext } from "../../contexts/product.context";
 
 export const Navigation = () => {
   const { isCartOpen } = useContext(CartContext);
+  const { categories } = useContext(ProductsContext);
 
   return (
     <Fragment>
@@ -17,12 +19,14 @@ export const Navigation = () => {
           <KnixLogo />
         </Link>
         <div className="w-[50%] h-full flex items-center justify-end text-lg">
-          <Link to="/shop" className="py-2 px-4">
+          <Link to="shop" className="py-2 px-4">
             Shop
           </Link>
-          <Link to="/shop" className="py-2 px-4">
-            Login
-          </Link>
+          {categories.map((category) => (
+            <Link key={category} to={`shop/${category}`} className="py-2 px-4">
+              {category}
+            </Link>
+          ))}
           <CartIcon />
         </div>
         {isCartOpen && <CartDropdown />}
@@ -33,3 +37,4 @@ export const Navigation = () => {
 };
 
 export default Navigation;
+
