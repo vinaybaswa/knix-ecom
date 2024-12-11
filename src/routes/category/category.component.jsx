@@ -2,41 +2,61 @@ import { useContext, useState, useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
 
 import ProductCard from "../../components/product-card/product-card.component";
+import Spinner from "../../components/spinner/spinner.component";
+import { ButtonInverted } from "../../components/button/button.component";
 
 import { ProductsContext } from "../../contexts/product.context";
 
 const Category = () => {
   const { category } = useParams();
-  const [products, setProducts] = useState([]);
+  const { categoryItems, setCategoryItems, isLoading, setISLoading, sortOrder, setSortOrder } =
+    useContext(ProductsContext);
+
+  const handleSort = () => setSortOrder(!sortOrder);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchCategoryItems = async () => {
       try {
+        setISLoading(true);
         const response = await fetch(
-          `https://fakestoreapi.com/products/category/${category}`
+          `https://fakestoreapi.com/products/category/${category}?sort=${
+            sortOrder ? "asc" : "desc"
+          }`
         );
-        console.log("response==>", response);
         const data = await response.json();
-        console.log("data==>", data);
-        setProducts(data);
-        console.log("shop setProducts");
+        setCategoryItems(data);
+        setISLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setISLoading(false);
       }
     };
 
-    fetchProducts();
-  }, [category]);
+    fetchCategoryItems();
+  }, [category, sortOrder]);
 
   return (
     <Fragment>
-      <h2 className="category-title">{category.toUpperCase()}</h2>
-      <div className="category-container">
-        {!!products.length &&
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-      </div>
+      <ButtonInverted
+        onClick={handleSort}
+        additionalStyles={"bg-red mt-4 ml-auto"}
+      >
+        {!sortOrder ? "Sort a to z" : "Sort z to a"}
+      </ButtonInverted>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <Fragment>
+          <h2 className="text-4xl mb-6 text-center">
+            {category.toUpperCase()}
+          </h2>
+          <div className="grid grid-cols-4 gap-x-5 gap-y-24">
+            {categoryItems.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </Fragment>
+      )}
     </Fragment>
   );
 };

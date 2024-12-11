@@ -2,14 +2,26 @@ import { createContext, useEffect, useState } from "react";
 
 export const ProductsContext = createContext({
   categories: [],
+  setCategories: () => {},
   directory: [],
+  setDirectory: () => {},
   products: [],
+  setProducts: () => {},
+  isLoading: true,
+  setISLoading: () => {},
+  categoryItems: [],
+  setCategoryItems: () => {},
+  sortOrder: true,
+  setSortOrder: () => {},
 });
 
 export const ProductsProvider = ({ children }) => {
+  const [isLoading, setISLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [directory, setDirectory] = useState([]);
   const [products, setProducts] = useState([]);
+  const [categoryItems, setCategoryItems] = useState([]);
+  const [sortOrder, setSortOrder] = useState(true);
 
   // Fetch all the available categories
   useEffect(() => {
@@ -43,7 +55,9 @@ export const ProductsProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://fakestoreapi.com/products");
+        const response = await fetch(`https://fakestoreapi.com/products?sort=${
+            sortOrder ? "asc" : "desc"
+          }`);
         const data = await response.json();
         setProducts(data);
       } catch (error) {
@@ -52,15 +66,21 @@ export const ProductsProvider = ({ children }) => {
     };
 
     fetchProducts();
-  }, []);
+  }, [sortOrder]);
 
   const value = {
-    products,
-    setProducts,
+    isLoading,
+    setISLoading,
     categories,
     setCategories,
     directory,
     setDirectory,
+    products,
+    setProducts,
+    categoryItems,
+    setCategoryItems,
+    sortOrder,
+    setSortOrder
   };
 
   return (

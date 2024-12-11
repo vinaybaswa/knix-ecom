@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/cart.context";
 
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
-import Button from "../../components/button/button.component";
+import { ButtonInverted } from "../../components/button/button.component";
 
 const Checkout = () => {
   const { cartItems, cartTotal } = useContext(CartContext);
@@ -30,8 +30,12 @@ const Checkout = () => {
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <div className="mt-7 ml-auto text-4xl font-extralight">TOTAL: ${cartTotal}</div>
-      <Button additionalStyles="mt-4 ml-auto bg-black text-white hover:opacity-70">Pay now</Button>
+      <div className="mt-7 ml-auto text-4xl font-extralight">
+        TOTAL: ${cartTotal}
+      </div>
+      <ButtonInverted additionalStyles="mt-4 ml-auto">
+        Pay now
+      </ButtonInverted>
     </div>
   );
 };

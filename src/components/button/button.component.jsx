@@ -1,13 +1,35 @@
-const Button = ({ children, additionalStyles, ...otherProps }) => {
+import { Fragment } from "react";
+
+export const Button = ({ children, additionalStyles, ...otherProps }) => {
   return (
-    <button className={`min-w-40 w-auto h-12 
+    <button
+      className={`min-w-40 w-auto h-12 
 tracking-wide text-lg py-3 px-9 bg-white 
-text-black uppercase border-none 
+text-black uppercase border-[1px] rounded-md
 cursor-pointer hover:bg-black hover:text-white 
-border border-black flex justify-center ${additionalStyles}` } {...otherProps} >
+border-black flex justify-center ${additionalStyles}`}
+      {...otherProps}
+    >
       {children}
     </button>
   );
 };
 
-export default Button;
+export const ButtonInverted = ({
+  children,
+  additionalStyles,
+  ...otherProps
+}) => {
+  return (
+    <button
+      className={`min-w-40 w-auto h-12 tracking-wide text-lg py-3 
+px-9 bg-black text-white uppercase border-none rounded-md
+cursor-pointer hover:opacity-70 border 
+border-black flex justify-center 
+${additionalStyles}`}
+      {...otherProps}
+    >
+      {children}
+    </button>
+  );
+};
