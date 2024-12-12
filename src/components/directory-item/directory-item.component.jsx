@@ -18,8 +18,8 @@ hover:scale-110 transition-transform"
         }}
       />
       <div
-        className="h-24 py-0 px-6 flex flex-col items-center border 
-border-black bg-white opacity-70 absolute hover:opacity-90"
+        className="h-24 py-0 px-6 flex flex-col items-center justify-center border 
+ bg-white opacity-70 absolute hover:opacity-90"
       >
         <h2 className="font-bold text-2xl my-0 mx-2 text-[#4a4a4a] uppercase">
           {category}
