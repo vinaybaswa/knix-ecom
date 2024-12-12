@@ -5,7 +5,7 @@ const DirectoryItem = ({ product }) => {
   return (
     <Link
       to={`shop/${category}`}
-      className="min-w-[30%] h-[500px] flex-auto flex items-center 
+      className="flex-col min-w-[100%] h-48 sm:min-w-[40%] sm:h-80 lg:min-w-[30%] flex-auto flex items-center 
 justify-center border border-black mx-3 mt-0 mb-3 
 overflow-hidden cursor-pointer first:mr-1 
 last:ml-1"

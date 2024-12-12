@@ -39,7 +39,7 @@ const Category = () => {
     <Fragment>
       <ButtonInverted
         onClick={handleSort}
-        additionalStyles={"bg-red mt-4 ml-auto"}
+        additionalStyles="mt-4 ml-auto"
       >
         {!sortOrder ? "Sort a to z" : "Sort z to a"}
       </ButtonInverted>
@@ -47,10 +47,10 @@ const Category = () => {
         <Spinner />
       ) : (
         <Fragment>
-          <h2 className="text-4xl mb-6 text-center">
+          <h2 className="text-lg sm:text-2xl md:text-3xl mb-6 text-center">
             {category.toUpperCase()}
           </h2>
-          <div className="grid grid-cols-4 gap-x-5 gap-y-24">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-24">
             {categoryItems.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

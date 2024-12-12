@@ -22,8 +22,8 @@ export const ButtonInverted = ({
 }) => {
   return (
     <button
-      className={`min-w-40 w-auto h-12 tracking-wide text-lg py-3 
-px-9 bg-black text-white uppercase border-none rounded-md
+      className={`min-w-fit w-auto h-12 tracking-wide text-sm py-3 
+px-4 bg-black text-white uppercase border-none rounded-md
 cursor-pointer hover:opacity-70 border 
 border-black flex justify-center 
 ${additionalStyles}`}

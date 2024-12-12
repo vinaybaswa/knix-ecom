@@ -17,8 +17,8 @@ const Categories = () => {
       >
         {!sortOrder ? "Sort a to z" : "Sort z to a"}
       </ButtonInverted>
-      <h2 className="text-4xl mb-6 text-center">SHOP ALL</h2>
-      <div className="grid grid-cols-4 gap-4 gap-y-28 p-4 pt-0">
+      <h2 className="text-lg sm:text-xl md:text-3xl mb-6 text-center">SHOP ALL</h2>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-24">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
