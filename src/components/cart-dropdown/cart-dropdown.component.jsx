@@ -7,18 +7,25 @@ import { ButtonInverted } from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
 
 const CartDropdown = () => {
-  const { cartItems, cartCount } = useContext(CartContext);
+  const { cartItems, cartCount, setIsCartOpen } = useContext(CartContext);
   const navigate = useNavigate();
 
   const goToCheckoutHandler = () => {
     navigate("/checkout");
   };
 
+  const closeDropdown = () => setIsCartOpen(false);
+
   return (
-    <div className="absolute w-80 h-[340px] flex flex-col p-5 border border-black bg-white top-[90px] right-10 z-10">
-      {!cartCount && <div className="text-lg my-12 mx-auto">Your cart is empty</div>}
+    <div className="absolute w-80 h-[340px] flex flex-col items-center p-5 pt-1 border border-black bg-white top-[90px] right-10 z-10">
+      <div className="pl-2 cursor-pointer ml-auto" onClick={closeDropdown}>
+        &#10005;
+      </div>
+      {!cartCount && (
+        <div className="text-lg my-12 mx-auto">Your cart is empty</div>
+      )}
       <div className="h-60 flex flex-col overflow-scroll">
-      {cartItems.map((item) => (
+        {cartItems.map((item) => (
           <CartItem key={item.id} cartItem={item} />
         ))}
       </div>
