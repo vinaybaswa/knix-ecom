@@ -22,7 +22,7 @@ export const Navigation = () => {
           >
             <KnixLogo className="h-8" alt="Knix Logo" />
           </a>
-          <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse sm:hidden">
+          <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse md:hidden">
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"
