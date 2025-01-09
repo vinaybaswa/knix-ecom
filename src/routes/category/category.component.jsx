@@ -46,20 +46,20 @@ const Category = () => {
       <ButtonInverted onClick={handleSort} additionalStyles="mt-4 ml-auto">
         {!sortOrder ? "Sort a to z" : "Sort z to a"}
       </ButtonInverted>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <Fragment>
-          <h2 className="text-lg sm:text-2xl md:text-3xl mb-6 text-center">
-            {category.toUpperCase()}
-          </h2>
+      <Fragment>
+        <h2 className="text-lg sm:text-2xl md:text-3xl mb-6 text-center">
+          {category.toUpperCase()}
+        </h2>
+        {isLoading ? (
+          <Spinner />
+        ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-24">
             {categoryItems.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-        </Fragment>
-      )}
+        )}
+      </Fragment>
     </Fragment>
   );
 };
