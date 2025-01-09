@@ -1,4 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
+
+import CATEGORIES from "../categories-data";
 
 export const ProductsContext = createContext({
   categories: [],
@@ -8,7 +10,7 @@ export const ProductsContext = createContext({
   products: [],
   setProducts: () => {},
   isLoading: true,
-  setISLoading: () => {},
+  setIsLoading: () => {},
   categoryItems: [],
   setCategoryItems: () => {},
   sortOrder: true,
@@ -16,61 +18,16 @@ export const ProductsContext = createContext({
 });
 
 export const ProductsProvider = ({ children }) => {
-  const [isLoading, setISLoading] = useState(true);
-  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [categories, setCategories] = useState([...CATEGORIES]);
   const [directory, setDirectory] = useState([]);
   const [products, setProducts] = useState([]);
   const [categoryItems, setCategoryItems] = useState([]);
   const [sortOrder, setSortOrder] = useState(true);
 
-  // Fetch all the available categories
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch(
-          "https://fakestoreapi.com/products/categories"
-        );
-        const data = await response.json();
-        setCategories(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
-
-  // Fetch one product from each category to create a directory
-  useEffect(() => {
-    Promise.all(
-      categories.map((category) =>
-        fetch(`https://fakestoreapi.com/products/category/${category}?limit=1`)
-      )
-    )
-      .then((responses) => Promise.all(responses.map((res) => res.json())))
-      .then((data) => setDirectory(data.flat()));
-  }, [categories]);
-
-  // Fetch all the products to show in the shop page
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(`https://fakestoreapi.com/products?sort=${
-            sortOrder ? "asc" : "desc"
-          }`);
-        const data = await response.json();
-        setProducts(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchProducts();
-  }, [sortOrder]);
-
   const value = {
     isLoading,
-    setISLoading,
+    setIsLoading,
     categories,
     setCategories,
     directory,
@@ -80,7 +37,7 @@ export const ProductsProvider = ({ children }) => {
     categoryItems,
     setCategoryItems,
     sortOrder,
-    setSortOrder
+    setSortOrder,
   };
 
   return (

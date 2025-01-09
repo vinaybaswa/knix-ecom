@@ -9,15 +9,21 @@ import { ProductsContext } from "../../contexts/product.context";
 
 const Category = () => {
   const { category } = useParams();
-  const { categoryItems, setCategoryItems, isLoading, setISLoading, sortOrder, setSortOrder } =
-    useContext(ProductsContext);
+  const {
+    categoryItems,
+    setCategoryItems,
+    isLoading,
+    setIsLoading,
+    sortOrder,
+    setSortOrder,
+  } = useContext(ProductsContext);
 
   const handleSort = () => setSortOrder(!sortOrder);
 
   useEffect(() => {
     const fetchCategoryItems = async () => {
       try {
-        setISLoading(true);
+        setIsLoading(true);
         const response = await fetch(
           `https://fakestoreapi.com/products/category/${category}?sort=${
             sortOrder ? "asc" : "desc"
@@ -25,10 +31,10 @@ const Category = () => {
         );
         const data = await response.json();
         setCategoryItems(data);
-        setISLoading(false);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
-        setISLoading(false);
+        setIsLoading(false);
       }
     };
 
@@ -37,10 +43,7 @@ const Category = () => {
 
   return (
     <Fragment>
-      <ButtonInverted
-        onClick={handleSort}
-        additionalStyles="mt-4 ml-auto"
-      >
+      <ButtonInverted onClick={handleSort} additionalStyles="mt-4 ml-auto">
         {!sortOrder ? "Sort a to z" : "Sort z to a"}
       </ButtonInverted>
       {isLoading ? (
