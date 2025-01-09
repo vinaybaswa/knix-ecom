@@ -1,5 +1,5 @@
 import { Fragment, useContext } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import KnixLogo from "../../assets/knix.svg?react";
 import CartIcon from "../../components/cart-icon/cart-icon.component";

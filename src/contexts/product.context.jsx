@@ -19,7 +19,7 @@ export const ProductsContext = createContext({
 
 export const ProductsProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [categories, setCategories] = useState([...CATEGORIES]);
+  const [categories, setCategories] = useState(CATEGORIES);
   const [directory, setDirectory] = useState([]);
   const [products, setProducts] = useState([]);
   const [categoryItems, setCategoryItems] = useState([]);
