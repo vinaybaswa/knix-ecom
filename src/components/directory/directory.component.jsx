@@ -18,7 +18,11 @@ const Directory = () => {
       )
     )
       .then((responses) => Promise.all(responses.map((res) => res.json())))
-      .then((data) => setDirectory(data.flat(), setIsLoading(false)));
+      .then((data) => setDirectory(data.flat(), setIsLoading(false)))
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+      });
   }, []);
 
   return isLoading ? (

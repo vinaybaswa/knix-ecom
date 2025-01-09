@@ -1,5 +1,3 @@
-import { Fragment } from "react";
-
 export const Button = ({ children, additionalStyles, ...otherProps }) => {
   return (
     <button
