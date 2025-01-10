@@ -44,7 +44,7 @@ const Category = () => {
   return (
     <Fragment>
       <ButtonInverted onClick={handleSort} additionalStyles="mt-4 ml-auto">
-        {!sortOrder ? "Sort a to z" : "Sort z to a"}
+        {!sortOrder ? "Sort Ascending" : "Sort Descending"}
       </ButtonInverted>
       <Fragment>
         <h2 className="text-lg sm:text-2xl md:text-3xl mb-6 text-center">
